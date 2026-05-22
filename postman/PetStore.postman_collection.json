@@ -825,12 +825,12 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "pm.test(\"Status code is 200\", function () {\r",
+                  "pm.test(\"Status code is 404\", function () {\r",
                   "    pm.response.to.have.status(404);\r",
                   "});\r",
-                  "pm.test(\"Response confirms deletion\", function () {\r",
+                  "pm.test(\"Response indicates order not found\", function () {\r",
                   "    const json = pm.response.json();\r",
-                  "    pm.expect(json.code).to.equal(404);\r",
+                  "    pm.expect(json.message.toLowerCase()).to.include(\"order not found\");\r",
                   "});"
                 ],
                 "type": "text/javascript",
@@ -1035,7 +1035,7 @@
               "listen": "prerequest",
               "script": {
                 "exec": [
-                  "pm.variables.get(\"TestUserPower\")"
+                  "pm.variables.set(\"username\", \"TestUserPower\");"
                 ],
                 "type": "text/javascript",
                 "packages": {},
